@@ -1,0 +1,27 @@
+[
+  {
+    "input": "2 dozen 8oz pkgs",
+    "description": "Chicken nuggets individually wrapped",
+    "expected_weight": 12.0
+  },
+  {
+    "input": "6/5lb",
+    "description": "Ground beef vacuum sealed",
+    "expected_weight": 30.0
+  },
+  {
+    "input": "4x10# bags",
+    "description": "Frozen shrimp",
+    "expected_weight": 40.0
+  },
+  {
+    "input": "case of 48 6oz portions",
+    "description": "Salmon fillets",
+    "expected_weight": 18.0
+  },
+  {
+    "input": "bulk 50lb box",
+    "description": "Chicken wings",
+    "expected_weight": 50.0
+  }
+]

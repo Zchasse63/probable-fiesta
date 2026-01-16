@@ -1,0 +1,33 @@
+[
+  {
+    "query": "frozen chicken under $3/lb",
+    "expected_filters": {
+      "category": "chicken",
+      "price_max": 3.0,
+      "is_frozen": true
+    }
+  },
+  {
+    "query": "raw beef over 40 pounds available in Dallas",
+    "expected_filters": {
+      "category": "beef",
+      "pack_size_min": 40,
+      "is_raw": true,
+      "warehouse": "Dallas"
+    }
+  },
+  {
+    "query": "cooked turkey products",
+    "expected_filters": {
+      "category": "turkey",
+      "is_raw": false
+    }
+  },
+  {
+    "query": "seafood in stock",
+    "expected_filters": {
+      "category": "seafood",
+      "availability": "in_stock"
+    }
+  }
+]
