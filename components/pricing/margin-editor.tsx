@@ -47,11 +47,11 @@ function MarginCell({ product, freightPerLb }: { product: Product; freightPerLb:
             max="100"
             value={value}
             onChange={(e) => setValue(parseFloat(e.target.value) || 0)}
-            className="w-20 px-2 py-1 border border-gray-300 rounded text-right"
+            className="w-20 px-2 py-1 border border-border rounded text-right"
           />
           <span>%</span>
           {isPending && (
-            <span className="text-xs text-gray-500">Saving...</span>
+            <span className="text-xs text-muted-foreground/80">Saving...</span>
           )}
         </div>
       </td>
@@ -139,7 +139,7 @@ export function MarginEditor({ products, freightPerLb }: MarginEditorProps) {
 
   if (products.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-muted-foreground/80">
         No products available for this zone.
       </div>
     );
@@ -148,7 +148,7 @@ export function MarginEditor({ products, freightPerLb }: MarginEditorProps) {
   return (
     <div className="space-y-4">
       {/* Bulk actions toolbar */}
-      <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+      <div className="flex items-center gap-4 p-4 bg-muted rounded-lg">
         <span className="text-sm font-medium">
           {selectedIds.size} selected
         </span>
@@ -157,21 +157,21 @@ export function MarginEditor({ products, freightPerLb }: MarginEditorProps) {
           <button
             onClick={() => handleBulkApply(12)}
             disabled={selectedIds.size === 0 || bulkUpdate.isPending}
-            className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-primary-50 text-primary rounded hover:bg-primary-100 disabled:opacity-50"
           >
             12%
           </button>
           <button
             onClick={() => handleBulkApply(15)}
             disabled={selectedIds.size === 0 || bulkUpdate.isPending}
-            className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-primary-50 text-primary rounded hover:bg-primary-100 disabled:opacity-50"
           >
             15%
           </button>
           <button
             onClick={() => handleBulkApply(18)}
             disabled={selectedIds.size === 0 || bulkUpdate.isPending}
-            className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-primary-50 text-primary rounded hover:bg-primary-100 disabled:opacity-50"
           >
             18%
           </button>
@@ -185,13 +185,13 @@ export function MarginEditor({ products, freightPerLb }: MarginEditorProps) {
             step="0.01"
             value={bulkMargin}
             onChange={(e) => setBulkMargin(e.target.value)}
-            className="w-20 px-2 py-1 border border-gray-300 rounded text-right"
+            className="w-20 px-2 py-1 border border-border rounded text-right"
           />
           <span className="text-sm">%</span>
           <button
             onClick={handleApplyToAll}
             disabled={bulkUpdate.isPending}
-            className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-success text-success-foreground rounded hover:bg-success/90 disabled:opacity-50"
           >
             Apply to All
           </button>
@@ -199,11 +199,11 @@ export function MarginEditor({ products, freightPerLb }: MarginEditorProps) {
       </div>
 
       {/* Products table */}
-      <div className="overflow-x-auto border border-gray-200 rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      <div className="overflow-x-auto border border-border rounded-lg">
+        <table className="min-w-full divide-y divide-border">
+          <thead className="bg-muted">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
                 <input
                   type="checkbox"
                   checked={allSelected}
@@ -211,30 +211,30 @@ export function MarginEditor({ products, freightPerLb }: MarginEditorProps) {
                   className="rounded"
                 />
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
                 Code
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
                 Description
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
                 Pack
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground/80 uppercase">
                 Cost/lb
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
                 Margin %
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground/80 uppercase">
                 Margin $/lb
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+              <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground/80 uppercase">
                 Preview $/lb
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-card divide-y divide-border">
             {products.map((product) => (
               <tr key={product.id}>
                 <td className="px-4 py-3">

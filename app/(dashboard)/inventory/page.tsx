@@ -148,13 +148,13 @@ export default function InventoryPage() {
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl font-bold mb-4">Inventory Management</h2>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Upload Excel files to import inventory, or manage existing products below
         </p>
       </div>
 
       {/* Upload Section */}
-      <div className="bg-white border rounded-lg p-6">
+      <div className="bg-card border rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-4">Upload Inventory</h3>
         <UploadDropzone onUploadComplete={handleUploadComplete} />
 
@@ -162,7 +162,7 @@ export default function InventoryPage() {
           <div className="mt-4">
             <button
               onClick={handleImport}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+              className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 font-medium"
             >
               Import {parsedData.length} Products
             </button>
@@ -171,7 +171,7 @@ export default function InventoryPage() {
       </div>
 
       {/* Smart Search */}
-      <div className="bg-white border rounded-lg p-4">
+      <div className="bg-card border rounded-lg p-4">
         <SmartSearch
           onFiltersApplied={(filters) => {
             if (filters.category) setCategoryFilter(filters.category);
@@ -195,7 +195,7 @@ export default function InventoryPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white border rounded-lg p-4">
+      <div className="bg-card border rounded-lg p-4">
         <div className="flex gap-4">
           <div className="flex-1">
             <input
@@ -203,7 +203,7 @@ export default function InventoryPage() {
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
           <select
@@ -211,7 +211,7 @@ export default function InventoryPage() {
             onChange={(e) =>
               setWarehouseFilter(e.target.value ? Number(e.target.value) : undefined)
             }
-            className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
           >
             <option value="">All Warehouses</option>
             <option value="1">PA Boyertown</option>
@@ -222,7 +222,7 @@ export default function InventoryPage() {
             onChange={(e) =>
               setCategoryFilter(e.target.value || undefined)
             }
-            className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
           >
             <option value="">All Categories</option>
             <option value="chicken">Chicken</option>

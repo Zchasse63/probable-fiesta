@@ -255,15 +255,15 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
       {/* Modal */}
       <div className="flex min-h-full items-center justify-center p-4">
         <div
-          className="relative bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+          className="relative bg-card rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b">
-            <h2 className="text-xl font-semibold text-gray-900">Import Customers</h2>
+            <h2 className="text-xl font-semibold text-foreground">Import Customers</h2>
             <button
               onClick={handleClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-muted-foreground/60 hover:text-muted-foreground transition-colors"
             >
               <X className="h-6 w-6" />
             </button>
@@ -282,8 +282,8 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                   transition-colors cursor-pointer
                   ${
                     isDragging
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-300 hover:border-gray-400 bg-white'
+                      ? 'border-primary bg-primary-50'
+                      : 'border-border hover:border-border bg-card'
                   }
                 `}
               >
@@ -296,14 +296,14 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
 
                 <div className="flex flex-col items-center justify-center space-y-4">
                   <Upload
-                    className={`h-16 w-16 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`}
+                    className={`h-16 w-16 ${isDragging ? 'text-primary' : 'text-muted-foreground/60'}`}
                   />
 
                   <div className="text-center">
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-lg font-medium text-foreground/80">
                       Drop your CSV or Excel file here
                     </p>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-muted-foreground/80 mt-1">
                       or click to browse (.csv, .xlsx, .xls)
                     </p>
                   </div>
@@ -315,10 +315,10 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
             {fileData && fileData.length > 0 && (
               <div className="space-y-6">
                 {/* File Info */}
-                <div className="flex items-center justify-between bg-gray-50 px-4 py-3 rounded-lg">
+                <div className="flex items-center justify-between bg-muted px-4 py-3 rounded-lg">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{selectedFile?.name}</p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-sm font-medium text-foreground">{selectedFile?.name}</p>
+                    <p className="text-xs text-muted-foreground/80 mt-1">
                       {fileData.length - 1} rows detected
                     </p>
                   </div>
@@ -328,7 +328,7 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                       setSelectedFile(null);
                       setColumnMapping({});
                     }}
-                    className="text-sm text-red-600 hover:text-red-700"
+                    className="text-sm text-destructive hover:text-destructive/80"
                   >
                     Remove
                   </button>
@@ -336,14 +336,14 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
 
                 {/* Column Mapping Interface */}
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900 mb-3">Map Columns</h3>
+                  <h3 className="text-sm font-medium text-foreground mb-3">Map Columns</h3>
                   <div className="grid grid-cols-2 gap-4">
                     {fileData[0].map((header: string | number | null, index: number) => {
                       const headerStr = header?.toString() || `Column ${index + 1}`;
                       return (
                         <div key={index} className="flex items-center gap-3">
                           <div className="flex-1 min-w-0">
-                            <label className="block text-xs font-medium text-gray-700 mb-1">
+                            <label className="block text-xs font-medium text-foreground/80 mb-1">
                               {headerStr}
                             </label>
                           </div>
@@ -351,7 +351,7 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                             <select
                               value={columnMapping[headerStr] || ''}
                               onChange={(e) => handleMappingChange(headerStr, e.target.value)}
-                              className="block w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                              className="block w-full text-sm rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
                             >
                               {CUSTOMER_FIELDS.map((field) => (
                                 <option key={field.value} value={field.value}>
@@ -370,19 +370,19 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                 {mappedCustomers.length > 0 && validationResults && (
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-sm font-medium text-gray-900">
+                      <h3 className="text-sm font-medium text-foreground">
                         Preview (first 10 rows)
                       </h3>
                       <div className="flex items-center gap-4 text-xs">
                         <div className="flex items-center gap-1">
                           <CheckCircle className="h-3 w-3 text-green-500" />
-                          <span className="text-gray-600">
+                          <span className="text-muted-foreground/80">
                             {validationResults.valid.length} valid
                           </span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <XCircle className="h-3 w-3 text-red-500" />
-                          <span className="text-gray-600">
+                          <XCircle className="h-3 w-3 text-destructive" />
+                          <span className="text-muted-foreground/80">
                             {validationResults.invalid.length} invalid
                           </span>
                         </div>
@@ -392,39 +392,39 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                     <div className="border rounded-lg overflow-hidden">
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm">
-                          <thead className="bg-gray-100 border-b">
+                          <thead className="bg-accent border-b">
                             <tr>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 Status
                               </th>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 Company
                               </th>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 Address
                               </th>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 City
                               </th>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 State
                               </th>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 ZIP
                               </th>
-                              <th className="px-4 py-2 text-left font-medium text-gray-700">
+                              <th className="px-4 py-2 text-left font-medium text-foreground/80">
                                 Contact
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-200">
+                          <tbody className="divide-y divide-border">
                             {mappedCustomers.slice(0, 10).map((customer, index) => {
                               const status = getValidationStatus(index);
                               return (
                                 <tr
                                   key={index}
-                                  className={`hover:bg-gray-50 ${
-                                    !status?.valid ? 'bg-red-50' : ''
+                                  className={`hover:bg-accent ${
+                                    !status?.valid ? 'bg-destructive/10' : ''
                                   }`}
                                 >
                                   <td className="px-4 py-2">
@@ -432,9 +432,9 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                                       <CheckCircle className="h-4 w-4 text-green-500" />
                                     ) : (
                                       <div className="relative group">
-                                        <XCircle className="h-4 w-4 text-red-500 cursor-help" />
+                                        <XCircle className="h-4 w-4 text-destructive cursor-help" />
                                         {status?.errors && status.errors.length > 0 && (
-                                          <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-10 w-64 p-2 bg-gray-900 text-white text-xs rounded shadow-lg">
+                                          <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-10 w-64 p-2 bg-foreground text-card text-xs rounded shadow-lg">
                                             {status.errors.map((err, i) => (
                                               <div key={i} className="mb-1 last:mb-0">
                                                 <span className="font-medium">{err.field}:</span>{' '}
@@ -463,7 +463,7 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
                     </div>
 
                     {mappedCustomers.length > 10 && (
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-muted-foreground/80 mt-2">
                         Showing 10 of {mappedCustomers.length} rows
                       </p>
                     )}
@@ -472,15 +472,15 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
 
                 {/* Geocode Option */}
                 {validationResults && validationResults.valid.length > 0 && (
-                  <div className="flex items-center gap-2 bg-blue-50 px-4 py-3 rounded-lg">
+                  <div className="flex items-center gap-2 bg-primary-50 px-4 py-3 rounded-lg">
                     <input
                       type="checkbox"
                       id="geocode-all"
                       checked={shouldGeocode}
                       onChange={(e) => setShouldGeocode(e.target.checked)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-primary focus:ring-ring border-border rounded"
                     />
-                    <label htmlFor="geocode-all" className="text-sm text-gray-700">
+                    <label htmlFor="geocode-all" className="text-sm text-foreground/80">
                       Geocode all addresses during import (may take longer)
                     </label>
                   </div>
@@ -490,13 +490,13 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
 
             {/* Import Progress */}
             {isImporting && (
-              <div className="bg-blue-50 px-4 py-3 rounded-lg">
-                <p className="text-sm font-medium text-blue-900 mb-2">
+              <div className="bg-primary-50 px-4 py-3 rounded-lg">
+                <p className="text-sm font-medium text-primary mb-2">
                   Importing {importProgress.current} of {importProgress.total}...
                 </p>
-                <div className="h-2 bg-blue-200 rounded-full overflow-hidden">
+                <div className="h-2 bg-primary-200 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-blue-600 transition-all duration-300"
+                    className="h-full bg-primary transition-all duration-300"
                     style={{
                       width: `${
                         importProgress.total > 0
@@ -511,11 +511,11 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-end gap-3 px-6 py-4 border-t bg-gray-50">
+          <div className="flex items-center justify-end gap-3 px-6 py-4 border-t bg-muted">
             <button
               onClick={handleClose}
               disabled={isImporting}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 text-sm font-medium text-foreground/80 bg-card border border-border rounded-md hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Cancel
             </button>
@@ -523,7 +523,7 @@ export function ImportModal({ isOpen, onClose }: ImportModalProps) {
               <button
                 onClick={handleImport}
                 disabled={isImporting}
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isImporting
                   ? 'Importing...'

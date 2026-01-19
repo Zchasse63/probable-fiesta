@@ -75,7 +75,7 @@ export function DealTable({ statusFilter = 'all', onDealClick }: DealTableProps)
       case 'pending':
         return <Badge variant="secondary">Pending</Badge>;
       case 'accepted':
-        return <Badge className="bg-green-600">Accepted</Badge>;
+        return <Badge className="bg-success">Accepted</Badge>;
       case 'rejected':
         return <Badge variant="destructive">Rejected</Badge>;
       default:

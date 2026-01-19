@@ -249,7 +249,7 @@ export function DealReview({
 
         <div className="flex gap-2 justify-end pt-4 border-t">
           <Button
-            variant="outline"
+            variant="ghost"
             onClick={handleReject}
             disabled={isSubmitting}
           >

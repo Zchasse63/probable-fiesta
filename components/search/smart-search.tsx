@@ -116,7 +116,7 @@ export function SmartSearch({ onFiltersApplied, onClearFilters }: SmartSearchPro
           )}
         </Button>
         {activeFilters && (
-          <Button variant="outline" onClick={handleClear}>
+          <Button variant="ghost" onClick={handleClear}>
             <X className="mr-2 h-4 w-4" />
             Clear
           </Button>

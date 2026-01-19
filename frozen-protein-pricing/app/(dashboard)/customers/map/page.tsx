@@ -91,8 +91,8 @@ function CustomersMapContent() {
           onClick={toggleZones}
           className={`px-4 py-2 rounded-lg shadow-lg transition-colors ${
             showZones
-              ? 'bg-blue-500 text-white hover:bg-blue-600'
-              : 'bg-white text-gray-700 hover:bg-gray-50'
+              ? 'bg-primary text-primary-foreground hover:bg-primary'
+              : 'bg-card text-foreground hover:bg-muted'
           }`}
         >
           {showZones ? 'Hide' : 'Show'} Zones
@@ -109,14 +109,14 @@ function CustomersMapContent() {
 
       {/* Selected Customers Panel */}
       {selectedCustomers.length > 0 && (
-        <div className="absolute top-4 right-4 w-80 bg-white rounded-lg shadow-xl p-4 z-10 max-h-[calc(100vh-8rem)] overflow-hidden flex flex-col">
+        <div className="absolute top-4 right-4 w-80 bg-card rounded-lg shadow-xl p-4 z-10 max-h-[calc(100vh-8rem)] overflow-hidden flex flex-col">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-gray-900">
+            <h3 className="font-semibold text-foreground">
               Selected Customers ({selectedCustomers.length})
             </h3>
             <button
               onClick={clearSelection}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-muted-foreground hover:text-muted-foreground"
               aria-label="Clear selection"
             >
               <svg
@@ -141,11 +141,11 @@ function CustomersMapContent() {
               .map((customer) => (
                 <div
                   key={customer.id}
-                  className="p-2 bg-gray-50 rounded hover:bg-gray-100 cursor-pointer"
+                  className="p-2 bg-muted rounded hover:bg-muted cursor-pointer"
                   onClick={() => handleCustomerSelect(customer.id)}
                 >
                   <div className="font-medium text-sm">{customer.company_name}</div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground">
                     {customer.city}, {customer.state}
                   </div>
                 </div>
@@ -180,7 +180,7 @@ function CustomersMapContent() {
 
 export default function CustomersMapPage() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="text-gray-500">Loading map...</div></div>}>
+    <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="text-muted-foreground">Loading map...</div></div>}>
       <CustomersMapContent />
     </Suspense>
   );

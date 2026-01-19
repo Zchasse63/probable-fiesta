@@ -54,7 +54,7 @@ export function SkeletonTable({ rows = 5 }: { rows?: number }) {
   return (
     <div className="border rounded-lg overflow-hidden">
       <table className="w-full">
-        <thead className="bg-gray-50">
+        <thead className="bg-muted">
           <tr>
             <th className="p-4 text-left"><Skeleton className="h-4 w-20" /></th>
             <th className="p-4 text-left"><Skeleton className="h-4 w-24" /></th>

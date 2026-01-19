@@ -119,7 +119,7 @@ export function ExportPanel({
 
             <Button
               onClick={() => setIsPDFPreviewOpen(true)}
-              variant="outline"
+              variant="ghost"
               className="w-full"
             >
               <FileText className="mr-2 h-4 w-4" />

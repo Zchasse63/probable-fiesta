@@ -1,16 +1,30 @@
+'use client';
+
+import { AppShell } from "@/components/layout/app-shell";
+import { Sidebar } from "@/components/layout/sidebar";
+import { Header } from "@/components/layout/header";
+import { LayoutDashboard, Package, DollarSign, Users, Truck, FileText } from "lucide-react";
+
+const navItems = [
+  { label: "Dashboard", icon: LayoutDashboard, href: "/", active: true },
+  { label: "Inventory", icon: Package, href: "/inventory" },
+  { label: "Pricing", icon: DollarSign, href: "/pricing" },
+  { label: "Customers", icon: Users, href: "/customers" },
+  { label: "Freight", icon: Truck, href: "/freight" },
+  { label: "Deals", icon: FileText, href: "/deals" },
+];
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen">
-      <nav className="border-b bg-white">
-        <div className="container mx-auto px-4 py-4">
-          <h1 className="text-2xl font-bold">Frozen Protein Pricing Platform</h1>
-        </div>
-      </nav>
-      <main className="container mx-auto px-4 py-8">{children}</main>
-    </div>
+    <AppShell
+      sidebar={<Sidebar navItems={navItems} />}
+      header={<Header />}
+    >
+      {children}
+    </AppShell>
   );
 }

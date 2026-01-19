@@ -109,15 +109,15 @@ export function PriceTable({ items, groupBy = 'warehouse', sortBy, editable = fa
   if (isLoading) {
     return (
       <div className="text-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        <p className="mt-4 text-gray-600">Loading prices...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+        <p className="mt-4 text-muted-foreground">Loading prices...</p>
       </div>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-muted-foreground">
         No products available for this zone.
       </div>
     );
@@ -132,25 +132,25 @@ export function PriceTable({ items, groupBy = 'warehouse', sortBy, editable = fa
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by code, description, or brand..."
-          className="flex-1 px-4 py-2 border border-gray-300 rounded"
+          className="flex-1 px-4 py-2 border border-border rounded"
         />
-        <span className="text-sm text-gray-600">
+        <span className="text-sm text-muted-foreground">
           {filteredItems.length} of {items.length} products
         </span>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto border border-gray-200 rounded-lg">
+      <div className="overflow-x-auto border border-border rounded-lg">
         {Object.entries(groupedItems).map(([groupName, groupItems]) => (
           <div key={groupName}>
             {groupBy !== 'none' && (
-              <div className="bg-gray-100 px-4 py-2 font-semibold border-b border-gray-200">
+              <div className="bg-muted px-4 py-2 font-semibold border-b border-border">
                 {groupName} ({groupItems.length})
               </div>
             )}
 
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-muted">
                 <tr>
                   <SortableHeader column="itemCode" currentColumn={sortColumn} direction={sortDirection} onSort={handleSort}>
                     Code
@@ -158,10 +158,10 @@ export function PriceTable({ items, groupBy = 'warehouse', sortBy, editable = fa
                   <SortableHeader column="description" currentColumn={sortColumn} direction={sortDirection} onSort={handleSort}>
                     Description
                   </SortableHeader>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">
                     Pack
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">
                     Brand
                   </th>
                   <SortableHeader column="costPerLb" currentColumn={sortColumn} direction={sortDirection} onSort={handleSort} align="right">
@@ -184,14 +184,14 @@ export function PriceTable({ items, groupBy = 'warehouse', sortBy, editable = fa
                   </SortableHeader>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-card divide-y divide-gray-200">
                 {groupItems.map((item) => {
                   const lowMargin = item.marginPercent < 10;
 
                   return (
                     <tr
                       key={item.productId}
-                      className={`hover:bg-gray-50 ${lowMargin ? 'bg-yellow-50' : ''}`}
+                      className={`hover:bg-muted ${lowMargin ? 'bg-warning-50' : ''}`}
                       title={lowMargin ? 'Low margin warning' : ''}
                     >
                       <td className="px-4 py-3 text-sm font-mono">{item.itemCode}</td>
@@ -239,7 +239,7 @@ function SortableHeader({
 
   return (
     <th
-      className={`px-4 py-3 text-${align} text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100`}
+      className={`px-4 py-3 text-${align} text-xs font-medium text-muted-foreground uppercase cursor-pointer hover:bg-muted`}
       onClick={() => onSort(column)}
     >
       <div className={`flex items-center gap-1 ${align === 'right' ? 'justify-end' : ''}`}>

@@ -7,6 +7,8 @@ import { CustomerMap } from '@/components/map/customer-map';
 import { useCustomerMap } from '@/lib/hooks/use-customer-map';
 import type { Insert } from '@/lib/supabase/types';
 
+export const dynamic = 'force-dynamic';
+
 export default function CustomerDetailPage() {
   const router = useRouter();
   const params = useParams();
@@ -36,7 +38,7 @@ export default function CustomerDetailPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-gray-500">Loading...</div>
+        <div className="text-muted-foreground">Loading...</div>
       </div>
     );
   }
@@ -45,11 +47,11 @@ export default function CustomerDetailPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Customer Not Found</h2>
-          <p className="text-gray-500 mb-4">The customer you&apos;re looking for doesn&apos;t exist.</p>
+          <h2 className="text-xl font-semibold text-foreground mb-2">Customer Not Found</h2>
+          <p className="text-muted-foreground mb-4">The customer you&apos;re looking for doesn&apos;t exist.</p>
           <button
             onClick={() => router.push('/customers')}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary"
           >
             Back to Customers
           </button>
@@ -73,7 +75,7 @@ export default function CustomerDetailPage() {
         <div>
           <button
             onClick={() => router.push('/customers')}
-            className="text-sm text-gray-500 hover:text-gray-700 mb-2 flex items-center"
+            className="text-sm text-muted-foreground hover:text-foreground/80 mb-2 flex items-center"
           >
             <svg
               className="w-4 h-4 mr-1"
@@ -95,28 +97,28 @@ export default function CustomerDetailPage() {
 
         <button
           onClick={handleDelete}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          className="px-4 py-2 bg-destructive text-destructive-foreground rounded hover:bg-destructive"
         >
           Delete Customer
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-border">
         <nav className="-mb-px flex space-x-8">
-          <button className="border-b-2 border-blue-500 py-4 px-1 text-sm font-medium text-blue-600">
+          <button className="border-b-2 border-primary py-4 px-1 text-sm font-medium text-primary">
             Details
           </button>
-          <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+          <button className="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-muted-foreground hover:text-foreground/80 hover:border-border">
             Order History
-            <span className="ml-2 text-xs bg-gray-200 px-2 py-1 rounded">Coming Soon</span>
+            <span className="ml-2 text-xs bg-accent px-2 py-1 rounded">Coming Soon</span>
           </button>
         </nav>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Form */}
-        <div className="lg:col-span-2 bg-white rounded-lg shadow p-6">
+        <div className="lg:col-span-2 bg-card rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold mb-4">Customer Information</h2>
           <CustomerForm
             customer={customer}
@@ -127,8 +129,8 @@ export default function CustomerDetailPage() {
 
         {/* Mini Map */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow p-4">
-            <h3 className="text-sm font-semibold text-gray-900 mb-3">Location</h3>
+          <div className="bg-card rounded-lg shadow p-4">
+            <h3 className="text-sm font-semibold text-foreground mb-3">Location</h3>
             {customer.lat && customer.lng ? (
               <div className="h-[300px] rounded-lg overflow-hidden">
                 <CustomerMap
@@ -145,8 +147,8 @@ export default function CustomerDetailPage() {
                 />
               </div>
             ) : (
-              <div className="h-[300px] bg-gray-100 rounded-lg flex items-center justify-center">
-                <p className="text-sm text-gray-500">
+              <div className="h-[300px] bg-muted rounded-lg flex items-center justify-center">
+                <p className="text-sm text-muted-foreground">
                   No location data available
                   <br />
                   <span className="text-xs">Geocode the address to display on map</span>

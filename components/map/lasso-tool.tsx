@@ -119,18 +119,18 @@ export function LassoControls({
   onClearSelection,
 }: LassoControlsProps) {
   return (
-    <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-2 space-y-2 z-10">
+    <div className="absolute top-4 left-4 bg-card rounded-lg shadow-lg p-2 space-y-2 z-10">
       {!isDrawing ? (
         <button
           onClick={onStartDrawing}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors w-full"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary transition-colors w-full"
         >
           Start Lasso Selection
         </button>
       ) : (
         <button
           onClick={onStopDrawing}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors w-full"
+          className="px-4 py-2 bg-destructive text-destructive-foreground rounded hover:bg-destructive transition-colors w-full"
         >
           Stop Drawing
         </button>
@@ -138,7 +138,7 @@ export function LassoControls({
 
       <button
         onClick={onClearSelection}
-        className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors w-full text-sm"
+        className="px-4 py-2 bg-muted-foreground text-card rounded hover:bg-muted-foreground/80 transition-colors w-full text-sm"
       >
         Clear Selection
       </button>

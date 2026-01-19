@@ -194,13 +194,13 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
   const getValidationIcon = (row: ParsedRow) => {
     // Check for missing required fields
     if (!row.item_code || !row.description || !row.pack_size) {
-      return <XCircle className="h-4 w-4 text-red-500" />;
+      return <XCircle className="h-4 w-4 text-destructive" />;
     }
 
     // Check if pack size can be parsed
     const caseWeight = parsePackSizeSync(row.pack_size);
     if (caseWeight === null) {
-      return <AlertCircle className="h-4 w-4 text-yellow-500" />;
+      return <AlertCircle className="h-4 w-4 text-warning-500" />;
     }
 
     return <CheckCircle className="h-4 w-4 text-green-500" />;
@@ -217,8 +217,8 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
           relative border-2 border-dashed rounded-lg p-8
           transition-colors cursor-pointer
           ${isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-gray-400 bg-white'
+            ? 'border-primary bg-primary-50'
+            : 'border-border hover:border-gray-400 bg-card'
           }
         `}
       >
@@ -231,21 +231,21 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
         />
 
         <div className="flex flex-col items-center justify-center space-y-4">
-          <Upload className={`h-12 w-12 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
+          <Upload className={`h-12 w-12 ${isDragging ? 'text-primary' : 'text-muted-foreground'}`} />
 
           <div className="text-center">
-            <p className="text-lg font-medium text-gray-700">
+            <p className="text-lg font-medium text-foreground">
               {isProcessing ? 'Processing...' : 'Drop your Excel file here'}
             </p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               or click to browse (.xlsx, .xls)
             </p>
           </div>
 
           {selectedFile && (
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               <span className="font-medium">{selectedFile.name}</span>
-              <span className="text-gray-400 ml-2">
+              <span className="text-muted-foreground ml-2">
                 ({(selectedFile.size / 1024).toFixed(1)} KB)
               </span>
             </div>
@@ -255,7 +255,7 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
             <div className="w-full max-w-xs">
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-blue-500 transition-all duration-300"
+                  className="h-full bg-primary transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -267,32 +267,32 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
       {/* Preview Table */}
       {parsedData.length > 0 && (
         <div className="border rounded-lg overflow-hidden">
-          <div className="bg-gray-50 px-4 py-2 border-b">
-            <h3 className="font-medium text-gray-900">
+          <div className="bg-muted px-4 py-2 border-b">
+            <h3 className="font-medium text-foreground">
               Preview ({parsedData.length} rows)
             </h3>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               Showing first 10 rows
             </p>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-gray-100 border-b">
+              <thead className="bg-muted border-b">
                 <tr>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Status</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Item Code</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Description</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Pack Size</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Brand</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Category</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Cases</th>
-                  <th className="px-4 py-2 text-left font-medium text-gray-700">Unit Cost</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Status</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Item Code</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Description</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Pack Size</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Brand</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Category</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Cases</th>
+                  <th className="px-4 py-2 text-left font-medium text-foreground">Unit Cost</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {parsedData.slice(0, 10).map((row, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
+                  <tr key={index} className="hover:bg-muted">
                     <td className="px-4 py-2">{getValidationIcon(row)}</td>
                     <td className="px-4 py-2 font-mono text-xs">{row.item_code}</td>
                     <td className="px-4 py-2">{row.description}</td>
@@ -327,13 +327,13 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
                               setParsedData(updated);
                               setEditingCategory(null);
                             }}
-                            className="px-2 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                            className="px-2 py-1 text-xs bg-primary text-primary-foreground rounded hover:bg-primary/90"
                           >
                             Save
                           </button>
                           <button
                             onClick={() => setEditingCategory(null)}
-                            className="px-2 py-1 text-xs bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                            className="px-2 py-1 text-xs bg-gray-300 text-foreground rounded hover:bg-gray-400"
                           >
                             Cancel
                           </button>
@@ -341,10 +341,10 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
                       ) : (
                         <div className="flex items-center gap-2">
                           {row.category ? (
-                            <span className={row.ai_suggested ? 'text-blue-600 text-xs' : ''}>
+                            <span className={row.ai_suggested ? 'text-primary text-xs' : ''}>
                               {row.category}
                               {row.ai_suggested && (
-                                <span className="ml-1 px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">
+                                <span className="ml-1 px-1.5 py-0.5 bg-primary-100 text-primary rounded text-xs">
                                   AI Suggested
                                 </span>
                               )}
@@ -354,7 +354,7 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
                           )}
                           <button
                             onClick={() => setEditingCategory({ rowIndex: index, value: row.category || '' })}
-                            className="p-1 text-gray-400 hover:text-gray-600"
+                            className="p-1 text-muted-foreground hover:text-muted-foreground"
                             title="Edit category"
                           >
                             <Edit2 className="h-3 w-3" />
@@ -372,18 +372,18 @@ export function UploadDropzone({ onUploadComplete }: UploadDropzoneProps) {
             </table>
           </div>
 
-          <div className="bg-gray-50 px-4 py-2 border-t flex items-center gap-4 text-xs">
+          <div className="bg-muted px-4 py-2 border-t flex items-center gap-4 text-xs">
             <div className="flex items-center gap-1">
               <CheckCircle className="h-3 w-3 text-green-500" />
-              <span className="text-gray-600">Valid</span>
+              <span className="text-muted-foreground">Valid</span>
             </div>
             <div className="flex items-center gap-1">
-              <AlertCircle className="h-3 w-3 text-yellow-500" />
-              <span className="text-gray-600">Pack size unparseable (AI fallback in Phase 5)</span>
+              <AlertCircle className="h-3 w-3 text-warning-500" />
+              <span className="text-muted-foreground">Pack size unparseable (AI fallback in Phase 5)</span>
             </div>
             <div className="flex items-center gap-1">
-              <XCircle className="h-3 w-3 text-red-500" />
-              <span className="text-gray-600">Missing required fields</span>
+              <XCircle className="h-3 w-3 text-destructive" />
+              <span className="text-muted-foreground">Missing required fields</span>
             </div>
           </div>
         </div>

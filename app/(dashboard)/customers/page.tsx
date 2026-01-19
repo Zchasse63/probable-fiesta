@@ -23,6 +23,8 @@ const CUSTOMER_TYPES = [
   { value: 'other', label: 'Other' },
 ];
 
+export const dynamic = 'force-dynamic';
+
 export default function CustomersPage() {
   const router = useRouter();
   const [filters, setFilters] = useState({
@@ -103,26 +105,26 @@ export default function CustomersPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold">Customers</h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-muted-foreground mt-1">
             Manage customer locations and freight zones
           </p>
         </div>
         <div className="flex space-x-3">
           <button
             onClick={() => setShowImportModal(true)}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className="px-4 py-2 bg-success text-success-foreground rounded hover:bg-success"
           >
             Import Customers
           </button>
           <button
             onClick={() => router.push('/customers/map')}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary"
           >
             View Map
           </button>
           <button
             onClick={() => router.push('/customers/new')}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary"
           >
             Add Customer
           </button>
@@ -131,23 +133,23 @@ export default function CustomersPage() {
 
       {/* Stats Panel */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-sm text-gray-500">Total Customers</div>
+        <div className="bg-card p-4 rounded-lg shadow">
+          <div className="text-sm text-muted-foreground">Total Customers</div>
           <div className="text-2xl font-bold">{totalCustomers}</div>
         </div>
         {customersByZone.map(({ zone, count }) => (
-          <div key={zone.id} className="bg-white p-4 rounded-lg shadow">
-            <div className="text-sm text-gray-500">{zone.name}</div>
+          <div key={zone.id} className="bg-card p-4 rounded-lg shadow">
+            <div className="text-sm text-muted-foreground">{zone.name}</div>
             <div className="text-2xl font-bold">{count}</div>
           </div>
         ))}
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow space-y-4">
+      <div className="bg-card p-4 rounded-lg shadow space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Zone
             </label>
             <select
@@ -158,7 +160,7 @@ export default function CustomersPage() {
                   zone_id: e.target.value ? parseInt(e.target.value) : undefined,
                 })
               }
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
             >
               <option value="">All Zones</option>
               {zones?.map((zone) => (
@@ -170,13 +172,13 @@ export default function CustomersPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               State
             </label>
             <select
               value={filters.state}
               onChange={(e) => setFilters({ ...filters, state: e.target.value })}
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
             >
               <option value="">All States</option>
               {US_STATES.map((state) => (
@@ -188,7 +190,7 @@ export default function CustomersPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Customer Type
             </label>
             <select
@@ -196,7 +198,7 @@ export default function CustomersPage() {
               onChange={(e) =>
                 setFilters({ ...filters, customer_type: e.target.value })
               }
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
             >
               <option value="">All Types</option>
               {CUSTOMER_TYPES.map((type) => (
@@ -208,7 +210,7 @@ export default function CustomersPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Search
             </label>
             <input
@@ -216,7 +218,7 @@ export default function CustomersPage() {
               placeholder="Company name..."
               value={filters.search}
               onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
             />
           </div>
         </div>
@@ -224,24 +226,24 @@ export default function CustomersPage() {
         {/* Bulk Actions */}
         {selectedIds.length > 0 && (
           <div className="flex items-center space-x-4 pt-4 border-t">
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-muted-foreground">
               {selectedIds.length} selected
             </span>
             <button
               onClick={() => handleBulkAction('assign_zone')}
-              className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+              className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm hover:bg-primary"
             >
               Assign Zone
             </button>
             <button
               onClick={() => handleBulkAction('export')}
-              className="px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600"
+              className="px-3 py-1 bg-success text-success-foreground rounded text-sm hover:bg-success"
             >
               Export CSV
             </button>
             <button
               onClick={() => handleBulkAction('delete')}
-              className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600"
+              className="px-3 py-1 bg-destructive text-destructive-foreground rounded text-sm hover:bg-destructive"
             >
               Delete
             </button>
@@ -252,13 +254,13 @@ export default function CustomersPage() {
         {showZoneSelector && (
           <div className="pt-4 border-t">
             <div className="flex items-center space-x-4">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-foreground/80">
                 Select Zone:
               </label>
               <select
                 value={selectedZoneId}
                 onChange={(e) => setSelectedZoneId(e.target.value)}
-                className="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
               >
                 <option value="">Choose a zone...</option>
                 {zones?.map((zone) => (
@@ -269,7 +271,7 @@ export default function CustomersPage() {
               </select>
               <button
                 onClick={handleZoneAssignment}
-                className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+                className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm hover:bg-primary"
               >
                 Apply
               </button>
@@ -278,7 +280,7 @@ export default function CustomersPage() {
                   setShowZoneSelector(false);
                   setSelectedZoneId('');
                 }}
-                className="px-3 py-1 bg-gray-500 text-white rounded text-sm hover:bg-gray-600"
+                className="px-3 py-1 bg-muted-foreground/60 text-white rounded text-sm hover:bg-muted-foreground/80"
               >
                 Cancel
               </button>
@@ -288,9 +290,9 @@ export default function CustomersPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg shadow">
+      <div className="bg-card rounded-lg shadow">
         {isLoading ? (
-          <div className="p-12 text-center text-gray-500">Loading...</div>
+          <div className="p-12 text-center text-muted-foreground">Loading...</div>
         ) : (
           <CustomerTable
             customers={filteredCustomers}

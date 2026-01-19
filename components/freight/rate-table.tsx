@@ -91,8 +91,8 @@ export function RateTable({ rates, isLoading }: RateTableProps) {
   if (isLoading) {
     return (
       <div className="text-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        <p className="mt-4 text-gray-600">Loading rates...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+        <p className="mt-4 text-muted-foreground">Loading rates...</p>
       </div>
     );
   }
@@ -100,52 +100,52 @@ export function RateTable({ rates, isLoading }: RateTableProps) {
   if (rates.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600">No freight rates found. Click &quot;Refresh Rates&quot; to calibrate.</p>
+        <p className="text-muted-foreground">No freight rates found. Click &quot;Refresh Rates&quot; to calibrate.</p>
       </div>
     );
   }
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+      <table className="min-w-full divide-y divide-border">
+        <thead className="bg-muted">
           <tr>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
               Warehouse
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
               Zone
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
               Destination
             </th>
-            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground/80 uppercase">
               Dry Quote
             </th>
-            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground/80 uppercase">
               Rate/lb
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
               Valid Until
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground/80 uppercase">
               Status
             </th>
-            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+            <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground/80 uppercase">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-card divide-y divide-border">
           {rates.map((rate) => {
             const status = getStatus(rate.valid_until);
             const isEditing = editingId === rate.id;
 
             return (
-              <tr key={rate.id} className="hover:bg-gray-50">
+              <tr key={rate.id} className="hover:bg-muted">
                 <td className="px-4 py-3 text-sm">
                   {rate.warehouses?.code || 'N/A'}
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-muted-foreground/80">
                     {rate.warehouses?.city}, {rate.warehouses?.state}
                   </div>
                 </td>
@@ -165,7 +165,7 @@ export function RateTable({ rates, isLoading }: RateTableProps) {
                       step="0.0001"
                       value={editValue}
                       onChange={(e) => setEditValue(e.target.value)}
-                      className="w-24 px-2 py-1 border border-gray-300 rounded"
+                      className="w-24 px-2 py-1 border border-border rounded"
                       autoFocus
                     />
                   ) : (
@@ -181,8 +181,8 @@ export function RateTable({ rates, isLoading }: RateTableProps) {
                       status.color === 'green'
                         ? 'bg-green-100 text-green-800'
                         : status.color === 'yellow'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
+                        ? 'bg-warning-100 text-warning-800'
+                        : 'bg-destructive/20 text-destructive'
                     }`}
                   >
                     {status.label}
@@ -194,13 +194,13 @@ export function RateTable({ rates, isLoading }: RateTableProps) {
                       <button
                         onClick={() => handleSave(rate)}
                         disabled={updateRate.isPending}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="text-primary hover:text-primary"
                       >
                         Save
                       </button>
                       <button
                         onClick={handleCancel}
-                        className="text-gray-600 hover:text-gray-800"
+                        className="text-muted-foreground hover:text-foreground"
                       >
                         Cancel
                       </button>
@@ -208,7 +208,7 @@ export function RateTable({ rates, isLoading }: RateTableProps) {
                   ) : (
                     <button
                       onClick={() => handleEdit(rate)}
-                      className="text-blue-600 hover:text-blue-800"
+                      className="text-primary hover:text-primary"
                     >
                       Edit
                     </button>

@@ -61,8 +61,8 @@ export function ZoneAssignment({
 
   if (selectedCustomerIds.length === 0) {
     return (
-      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-        <p className="text-sm text-gray-600">
+      <div className="rounded-lg border border-border bg-muted p-4">
+        <p className="text-sm text-muted-foreground">
           Select customers from the table to assign them to a zone
         </p>
       </div>
@@ -70,8 +70,8 @@ export function ZoneAssignment({
   }
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+    <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+      <h3 className="text-lg font-semibold text-foreground mb-4">
         Bulk Zone Assignment
       </h3>
 
@@ -79,7 +79,7 @@ export function ZoneAssignment({
         <div>
           <label
             htmlFor="zone-select"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium text-foreground/80 mb-2"
           >
             Select Zone ({selectedCustomerIds.length} customer
             {selectedCustomerIds.length !== 1 ? 's' : ''} selected)
@@ -89,7 +89,7 @@ export function ZoneAssignment({
             value={selectedZoneId}
             onChange={(e) => setSelectedZoneId(e.target.value)}
             disabled={zonesLoading}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full rounded-md border border-border bg-card px-3 py-2 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-ring"
           >
             <option value="">-- Select a zone --</option>
             {zones?.map((zone) => (
@@ -101,12 +101,12 @@ export function ZoneAssignment({
         </div>
 
         {selectedZoneId && selectedZone && (
-          <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-md">
+          <div className="flex items-center gap-2 p-3 bg-muted rounded-md">
             <div
               className="w-4 h-4 rounded-full flex-shrink-0"
               style={{ backgroundColor: selectedZone.color }}
             />
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-foreground/80">
               {selectedZone.name}
             </span>
           </div>
@@ -125,11 +125,11 @@ export function ZoneAssignment({
 
       {showConfirmation && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <div className="bg-card rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
+            <h3 className="text-lg font-semibold text-foreground mb-2">
               Confirm Zone Assignment
             </h3>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-sm text-muted-foreground mb-6">
               Assign {selectedCustomerIds.length} customer
               {selectedCustomerIds.length !== 1 ? 's' : ''} to{' '}
               <span className="font-semibold">{selectedZone?.name}</span>?
@@ -137,7 +137,7 @@ export function ZoneAssignment({
             <div className="flex gap-3 justify-end">
               <Button
                 onClick={handleCancel}
-                variant="outline"
+                variant="ghost"
                 disabled={bulkUpdateZone.isPending}
               >
                 Cancel

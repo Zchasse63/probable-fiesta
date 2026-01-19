@@ -22,6 +22,8 @@ interface Warehouse {
   name: string;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default function DealsPage() {
   const [selectedDealId, setSelectedDealId] = useState<string | null>(null);
   const [selectedDealData, setSelectedDealData] = useState<ParsedDeal | null>(null);

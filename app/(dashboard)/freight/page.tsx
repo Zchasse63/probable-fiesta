@@ -39,7 +39,7 @@ export default function FreightPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Freight Management</h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Manage freight rates and get LTL quotes
           </p>
         </div>
@@ -47,35 +47,35 @@ export default function FreightPage() {
           <button
             onClick={handleCalibrate}
             disabled={calibrateLanes.isPending}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 disabled:opacity-50"
           >
             {calibrateLanes.isPending ? "Calibrating..." : "Refresh Rates"}
           </button>
         </div>
       </div>
 
-      <div className="bg-white p-4 rounded-lg shadow">
+      <div className="bg-card p-4 rounded-lg shadow">
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-sm text-gray-500">Last Calibration</p>
+            <p className="text-sm text-muted-foreground/80">Last Calibration</p>
             <p className="font-semibold">{lastCalibration}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Active Rates</p>
+            <p className="text-sm text-muted-foreground/80">Active Rates</p>
             <p className="font-semibold">{rates.length}</p>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow">
-        <div className="border-b border-gray-200">
+      <div className="bg-card rounded-lg shadow">
+        <div className="border-b border-border">
           <nav className="flex -mb-px">
             <button
               onClick={() => setActiveTab('rates')}
               className={`px-6 py-4 border-b-2 font-medium ${
                 activeTab === 'rates'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground/80 hover:border-border'
               }`}
             >
               Current Rates
@@ -84,8 +84,8 @@ export default function FreightPage() {
               onClick={() => setActiveTab('calculator')}
               className={`px-6 py-4 border-b-2 font-medium ${
                 activeTab === 'calculator'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground/80 hover:border-border'
               }`}
             >
               Rate Calculator
@@ -98,13 +98,13 @@ export default function FreightPage() {
             <div className="space-y-4">
               <div className="flex gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-foreground/80 mb-1">
                     Warehouse
                   </label>
                   <select
                     value={selectedWarehouse || ''}
                     onChange={(e) => setSelectedWarehouse(e.target.value ? Number(e.target.value) : undefined)}
-                    className="px-3 py-2 border border-gray-300 rounded"
+                    className="px-3 py-2 border border-border rounded"
                   >
                     <option value="">All Warehouses</option>
                     {warehouses.map((wh) => (
@@ -115,13 +115,13 @@ export default function FreightPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-foreground/80 mb-1">
                     Zone
                   </label>
                   <select
                     value={selectedZone || ''}
                     onChange={(e) => setSelectedZone(e.target.value ? Number(e.target.value) : undefined)}
-                    className="px-3 py-2 border border-gray-300 rounded"
+                    className="px-3 py-2 border border-border rounded"
                   >
                     <option value="">All Zones</option>
                     <option value="1">Southeast</option>

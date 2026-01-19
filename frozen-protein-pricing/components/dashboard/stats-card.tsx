@@ -27,8 +27,8 @@ export function StatsCard({
   const content = (
     <Card className={cn(href && 'hover:shadow-md transition-shadow cursor-pointer')}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <h3 className="text-sm font-medium text-gray-600">{title}</h3>
-        <Icon className="h-4 w-4 text-gray-400" />
+        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
+        <Icon className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
@@ -39,8 +39,8 @@ export function StatsCard({
                 className={cn(
                   'flex items-center text-xs font-medium',
                   trend === 'up' && 'text-green-600',
-                  trend === 'down' && 'text-red-600',
-                  trend === 'neutral' && 'text-gray-500'
+                  trend === 'down' && 'text-destructive',
+                  trend === 'neutral' && 'text-muted-foreground'
                 )}
               >
                 {trend === 'up' && <TrendingUp className="h-3 w-3 mr-0.5" />}
@@ -50,7 +50,7 @@ export function StatsCard({
               </span>
             )}
             {description && (
-              <p className="text-xs text-gray-500">{description}</p>
+              <p className="text-xs text-muted-foreground">{description}</p>
             )}
           </div>
         )}

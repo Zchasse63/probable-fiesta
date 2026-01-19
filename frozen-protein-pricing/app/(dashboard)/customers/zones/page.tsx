@@ -53,7 +53,7 @@ export default function ZonesPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-gray-500">Loading zones...</div>
+        <div className="text-muted-foreground">Loading zones...</div>
       </div>
     );
   }
@@ -62,7 +62,7 @@ export default function ZonesPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Zone Management</h1>
-        <p className="text-gray-500 mt-1">
+        <p className="text-muted-foreground mt-1">
           Manage freight zones and their assignments
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function ZonesPage() {
           return (
             <div
               key={zone.id}
-              className="bg-white rounded-lg shadow p-6 border-l-4"
+              className="bg-card rounded-lg shadow p-6 border-l-4"
               style={{ borderLeftColor: zone.color }}
             >
               {/* Header */}
@@ -104,7 +104,7 @@ export default function ZonesPage() {
                             name: e.target.value,
                           }))
                         }
-                        className="flex-1 text-xl font-semibold border border-gray-300 rounded px-3 py-2"
+                        className="flex-1 text-xl font-semibold border border-border rounded px-3 py-2"
                         placeholder="Zone Name"
                       />
                     </>
@@ -114,7 +114,7 @@ export default function ZonesPage() {
                         className="w-12 h-12 rounded"
                         style={{ backgroundColor: zone.color }}
                       />
-                      <h2 className="text-xl font-semibold text-gray-900">{zone.name}</h2>
+                      <h2 className="text-xl font-semibold text-foreground">{zone.name}</h2>
                     </>
                   )}
                 </div>
@@ -122,7 +122,7 @@ export default function ZonesPage() {
                 {!isEditing && (
                   <button
                     onClick={() => handleEdit(zone)}
-                    className="text-sm text-blue-600 hover:text-blue-700"
+                    className="text-sm text-primary hover:text-primary"
                   >
                     Edit
                   </button>
@@ -130,22 +130,22 @@ export default function ZonesPage() {
               </div>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 mb-4">{zone.description}</p>
+              <p className="text-sm text-muted-foreground mb-4">{zone.description}</p>
 
               {/* Stats */}
-              <div className="mb-4 p-3 bg-gray-50 rounded">
-                <div className="text-sm text-gray-500">Customers in Zone</div>
-                <div className="text-2xl font-bold text-gray-900">{customerCount}</div>
+              <div className="mb-4 p-3 bg-muted rounded">
+                <div className="text-sm text-muted-foreground">Customers in Zone</div>
+                <div className="text-2xl font-bold text-foreground">{customerCount}</div>
               </div>
 
               {/* States */}
               <div className="mb-4">
-                <div className="text-sm font-medium text-gray-700 mb-2">States</div>
+                <div className="text-sm font-medium text-foreground mb-2">States</div>
                 <div className="flex flex-wrap gap-1">
                   {zone.states?.map((state: string) => (
                     <span
                       key={state}
-                      className="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded"
+                      className="px-2 py-1 text-xs font-medium bg-gray-200 text-foreground rounded"
                     >
                       {state}
                     </span>
@@ -159,14 +159,14 @@ export default function ZonesPage() {
                   <button
                     onClick={() => handleSave(zone.id.toString())}
                     disabled={updateZone.isPending}
-                    className="flex-1 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400"
+                    className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary disabled:bg-gray-400"
                   >
                     {updateZone.isPending ? 'Saving...' : 'Save'}
                   </button>
                   <button
                     onClick={handleCancel}
                     disabled={updateZone.isPending}
-                    className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:bg-gray-100"
+                    className="flex-1 px-4 py-2 bg-gray-200 text-foreground rounded hover:bg-gray-300 disabled:bg-muted"
                   >
                     Cancel
                   </button>
@@ -178,9 +178,9 @@ export default function ZonesPage() {
       </div>
 
       {/* Info */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="text-sm font-medium text-blue-900 mb-1">About Zones</h3>
-        <p className="text-sm text-blue-800">
+      <div className="bg-primary-50 border border-primary-200 rounded-lg p-4">
+        <h3 className="text-sm font-medium text-primary mb-1">About Zones</h3>
+        <p className="text-sm text-primary">
           Freight zones are geographic regions used to calculate shipping rates. Each customer is
           assigned to a zone based on their state. Zone assignments can be changed from the
           customers page or map view.

@@ -221,7 +221,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Company Name */}
         <div className="col-span-2">
-          <label htmlFor="company_name" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="company_name" className="block text-sm font-medium text-foreground">
             Company Name *
           </label>
           <input
@@ -231,13 +231,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             required
             value={formData.company_name}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* Address */}
         <div className="col-span-2">
-          <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="address" className="block text-sm font-medium text-foreground">
             Address
           </label>
           <div className="mt-1 flex space-x-2">
@@ -247,7 +247,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
             />
             <button
               type="button"
@@ -261,41 +261,41 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
               type="button"
               onClick={handleGeocodeAddress}
               disabled={geocoding}
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:bg-gray-400 whitespace-nowrap"
+              className="px-4 py-2 bg-success text-success-foreground rounded hover:bg-success disabled:bg-gray-400 whitespace-nowrap"
             >
               {geocoding ? 'Geocoding...' : 'Geocode'}
             </button>
           </div>
           {showDiff && originalAddress && (
-            <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded text-sm">
+            <div className="mt-2 p-3 bg-primary-50 border border-primary-200 rounded text-sm">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <p className="font-semibold text-blue-900 mb-1">Address Normalized:</p>
-                  <div className="space-y-1 text-gray-700">
+                  <p className="font-semibold text-primary mb-1">Address Normalized:</p>
+                  <div className="space-y-1 text-foreground">
                     {originalAddress.address !== formData.address && (
                       <div>
-                        <span className="line-through text-red-600">{originalAddress.address}</span>
+                        <span className="line-through text-destructive">{originalAddress.address}</span>
                         {' → '}
                         <span className="text-green-600 font-medium">{formData.address}</span>
                       </div>
                     )}
                     {originalAddress.city !== formData.city && (
                       <div>
-                        <span className="line-through text-red-600">{originalAddress.city}</span>
+                        <span className="line-through text-destructive">{originalAddress.city}</span>
                         {' → '}
                         <span className="text-green-600 font-medium">{formData.city}</span>
                       </div>
                     )}
                     {originalAddress.state !== formData.state && (
                       <div>
-                        <span className="line-through text-red-600">{originalAddress.state}</span>
+                        <span className="line-through text-destructive">{originalAddress.state}</span>
                         {' → '}
                         <span className="text-green-600 font-medium">{formData.state}</span>
                       </div>
                     )}
                     {originalAddress.zip !== formData.zip && (
                       <div>
-                        <span className="line-through text-red-600">{originalAddress.zip}</span>
+                        <span className="line-through text-destructive">{originalAddress.zip}</span>
                         {' → '}
                         <span className="text-green-600 font-medium">{formData.zip}</span>
                       </div>
@@ -316,7 +316,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
 
         {/* City */}
         <div>
-          <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="city" className="block text-sm font-medium text-foreground">
             City
           </label>
           <input
@@ -325,13 +325,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="city"
             value={formData.city}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* State */}
         <div>
-          <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="state" className="block text-sm font-medium text-foreground">
             State
           </label>
           <select
@@ -339,7 +339,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="state"
             value={formData.state}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           >
             <option value="">Select State</option>
             {US_STATES.map((state) => (
@@ -352,7 +352,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
 
         {/* ZIP */}
         <div>
-          <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="zip" className="block text-sm font-medium text-foreground">
             ZIP Code
           </label>
           <input
@@ -361,13 +361,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="zip"
             value={formData.zip}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* Zone */}
         <div>
-          <label htmlFor="zone_id" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="zone_id" className="block text-sm font-medium text-foreground">
             Zone
           </label>
           <select
@@ -381,7 +381,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
                 zone_id: value ? Number(value) : null,
               }));
             }}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           >
             <option value="">Select Zone</option>
             {zones?.map((zone) => (
@@ -394,7 +394,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
 
         {/* Customer Type */}
         <div>
-          <label htmlFor="customer_type" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="customer_type" className="block text-sm font-medium text-foreground">
             Customer Type
           </label>
           <select
@@ -402,7 +402,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="customer_type"
             value={formData.customer_type}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           >
             {CUSTOMER_TYPES.map((type) => (
               <option key={type.value} value={type.value}>
@@ -414,7 +414,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
 
         {/* Contact Name */}
         <div>
-          <label htmlFor="contact_name" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="contact_name" className="block text-sm font-medium text-foreground">
             Contact Name
           </label>
           <input
@@ -423,13 +423,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="contact_name"
             value={formData.contact_name ?? ''}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* Contact Email */}
         <div>
-          <label htmlFor="contact_email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="contact_email" className="block text-sm font-medium text-foreground">
             Contact Email
           </label>
           <input
@@ -438,13 +438,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="contact_email"
             value={formData.contact_email ?? ''}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* Contact Phone */}
         <div>
-          <label htmlFor="contact_phone" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="contact_phone" className="block text-sm font-medium text-foreground">
             Contact Phone
           </label>
           <input
@@ -453,13 +453,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             name="contact_phone"
             value={formData.contact_phone ?? ''}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* Notes */}
         <div className="col-span-2">
-          <label htmlFor="notes" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="notes" className="block text-sm font-medium text-foreground">
             Notes
           </label>
           <textarea
@@ -468,13 +468,13 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
             rows={3}
             value={formData.notes ?? ''}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border-border shadow-sm focus:border-primary focus:ring-ring"
           />
         </div>
 
         {/* Coordinates (read-only) */}
         {(formData.lat || formData.lng) && (
-          <div className="col-span-2 text-sm text-gray-500">
+          <div className="col-span-2 text-sm text-muted-foreground">
             Coordinates: {formData.lat?.toFixed(6)}, {formData.lng?.toFixed(6)}
           </div>
         )}
@@ -486,7 +486,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+            className="px-4 py-2 border border-border rounded-md text-foreground hover:bg-muted"
           >
             Cancel
           </button>
@@ -494,7 +494,7 @@ export function CustomerForm({ customer, onSubmit, onCancel, isSubmitting = fals
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary disabled:bg-gray-400"
         >
           {isSubmitting ? 'Saving...' : customer ? 'Update Customer' : 'Create Customer'}
         </button>

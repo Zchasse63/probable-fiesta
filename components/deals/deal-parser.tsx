@@ -86,9 +86,9 @@ export function DealParser({ onDealParsed }: DealParserProps) {
     const confidence = (filledRequired / requiredFields.length) * 100;
 
     if (confidence === 100) {
-      return <Badge className="bg-green-600">High Confidence</Badge>;
+      return <Badge className="bg-success">High Confidence</Badge>;
     } else if (confidence >= 60) {
-      return <Badge className="bg-yellow-600">Medium Confidence</Badge>;
+      return <Badge className="bg-warning-600">Medium Confidence</Badge>;
     } else {
       return <Badge variant="destructive">Low Confidence</Badge>;
     }

@@ -42,23 +42,23 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <Card className="m-4">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-red-600">
+            <CardTitle className="flex items-center gap-2 text-destructive">
               <AlertTriangle className="h-5 w-5" />
               Something went wrong
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               An error occurred while rendering this component.
             </p>
             {process.env.NODE_ENV === 'development' && this.state.error && (
-              <div className="p-3 bg-gray-100 rounded-md">
-                <p className="text-xs font-mono text-gray-700 break-all">
+              <div className="p-3 bg-muted rounded-md">
+                <p className="text-xs font-mono text-foreground/80 break-all">
                   {this.state.error.message}
                 </p>
               </div>
             )}
-            <Button onClick={this.handleReset} variant="outline" size="sm">
+            <Button onClick={this.handleReset} variant="ghost" size="sm">
               <RefreshCw className="h-4 w-4 mr-2" />
               Try Again
             </Button>

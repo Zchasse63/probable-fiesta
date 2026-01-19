@@ -78,17 +78,17 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
       <div className="border rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-100 border-b">
+            <thead className="bg-muted border-b">
               <tr>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Item Code</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Description</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Pack Size</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Case Weight</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Brand</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Warehouse</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Cases</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Cost/Case</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Cost/LB</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Item Code</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Description</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Pack Size</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Case Weight</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Brand</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Warehouse</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Cases</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Cost/Case</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Cost/LB</th>
               </tr>
             </thead>
             <tbody>
@@ -115,8 +115,8 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
   if (products.length === 0) {
     return (
       <div className="border rounded-lg p-12 text-center">
-        <p className="text-gray-500">No products found</p>
-        <p className="text-sm text-gray-400 mt-1">Upload an inventory file to get started</p>
+        <p className="text-muted-foreground">No products found</p>
+        <p className="text-sm text-muted-foreground mt-1">Upload an inventory file to get started</p>
       </div>
     );
   }
@@ -126,11 +126,11 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
       <div className="border rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-100 border-b">
+            <thead className="bg-muted border-b">
               <tr>
                 <th
                   onClick={() => handleSort('item_code')}
-                  className="px-4 py-3 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-200"
+                  className="px-4 py-3 text-left font-medium text-foreground cursor-pointer hover:bg-gray-200"
                 >
                   <div className="flex items-center gap-1">
                     Item Code
@@ -141,7 +141,7 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                 </th>
                 <th
                   onClick={() => handleSort('description')}
-                  className="px-4 py-3 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-200"
+                  className="px-4 py-3 text-left font-medium text-foreground cursor-pointer hover:bg-gray-200"
                 >
                   <div className="flex items-center gap-1">
                     Description
@@ -150,10 +150,10 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                     )}
                   </div>
                 </th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Pack Size</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Pack Size</th>
                 <th
                   onClick={() => handleSort('case_weight_lbs')}
-                  className="px-4 py-3 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-200"
+                  className="px-4 py-3 text-left font-medium text-foreground cursor-pointer hover:bg-gray-200"
                 >
                   <div className="flex items-center gap-1">
                     Case Weight
@@ -164,7 +164,7 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                 </th>
                 <th
                   onClick={() => handleSort('brand')}
-                  className="px-4 py-3 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-200"
+                  className="px-4 py-3 text-left font-medium text-foreground cursor-pointer hover:bg-gray-200"
                 >
                   <div className="flex items-center gap-1">
                     Brand
@@ -173,11 +173,11 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                     )}
                   </div>
                 </th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Warehouse</th>
-                <th className="px-4 py-3 text-left font-medium text-gray-700">Cases</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Warehouse</th>
+                <th className="px-4 py-3 text-left font-medium text-foreground">Cases</th>
                 <th
                   onClick={() => handleSort('unit_cost')}
-                  className="px-4 py-3 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-200"
+                  className="px-4 py-3 text-left font-medium text-foreground cursor-pointer hover:bg-gray-200"
                 >
                   <div className="flex items-center gap-1">
                     Cost/Case
@@ -188,7 +188,7 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                 </th>
                 <th
                   onClick={() => handleSort('cost_per_lb')}
-                  className="px-4 py-3 text-left font-medium text-gray-700 cursor-pointer hover:bg-gray-200"
+                  className="px-4 py-3 text-left font-medium text-foreground cursor-pointer hover:bg-gray-200"
                 >
                   <div className="flex items-center gap-1">
                     Cost/LB
@@ -204,11 +204,11 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                 <tr
                   key={product.id}
                   onClick={() => handleRowClick(product.id)}
-                  className="hover:bg-gray-50 cursor-pointer"
+                  className="hover:bg-muted cursor-pointer"
                 >
                   <td className="px-4 py-3 font-mono text-xs">{product.item_code}</td>
                   <td className="px-4 py-3">{product.description}</td>
-                  <td className="px-4 py-3 text-gray-600">{product.pack_size}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{product.pack_size}</td>
                   <td className="px-4 py-3">
                     {product.case_weight_lbs ? `${product.case_weight_lbs} lbs` : '—'}
                   </td>
@@ -233,7 +233,7 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between px-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             Showing {(currentPage - 1) * itemsPerPage + 1} to{' '}
             {Math.min(currentPage * itemsPerPage, sortedProducts.length)} of{' '}
             {sortedProducts.length} products
@@ -243,7 +243,7 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
             <button
               onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-1 border rounded hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Previous
             </button>
@@ -264,8 +264,8 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
                       className={`
                         px-3 py-1 border rounded
                         ${currentPage === page
-                          ? 'bg-blue-500 text-white border-blue-500'
-                          : 'hover:bg-gray-100'
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : 'hover:bg-muted'
                         }
                       `}
                     >
@@ -285,7 +285,7 @@ export function ProductTable({ products, isLoading }: ProductTableProps) {
             <button
               onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-1 border rounded hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
             </button>

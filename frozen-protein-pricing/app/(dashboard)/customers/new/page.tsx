@@ -29,12 +29,12 @@ export default function NewCustomerPage() {
     <div className="container mx-auto p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Add New Customer</h1>
-        <p className="text-gray-600 mt-1">
+        <p className="text-muted-foreground mt-1">
           Create a new customer record with address and zone information
         </p>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-card rounded-lg shadow p-6">
         <CustomerForm
           onSubmit={handleSubmit}
           onCancel={handleCancel}

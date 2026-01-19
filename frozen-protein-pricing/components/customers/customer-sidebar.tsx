@@ -65,13 +65,13 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-[400px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 right-0 h-full w-[400px] bg-card shadow-2xl transform transition-transform duration-300 ease-in-out z-50 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-gray-50">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted">
             {isEditing ? (
               <input
                 type="text"
@@ -79,17 +79,17 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                 onChange={(e) =>
                   setEditData((prev) => ({ ...prev, company_name: e.target.value }))
                 }
-                className="flex-1 mr-2 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="flex-1 mr-2 px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-primary"
                 placeholder="Company Name"
               />
             ) : (
-              <h2 className="text-xl font-semibold text-gray-900 truncate">
+              <h2 className="text-xl font-semibold text-foreground truncate">
                 {customer.company_name}
               </h2>
             )}
             <button
               onClick={onClose}
-              className="ml-4 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-200 rounded-md transition-colors"
+              className="ml-4 p-2 text-muted-foreground hover:text-muted-foreground hover:bg-gray-200 rounded-md transition-colors"
               aria-label="Close"
             >
               <svg
@@ -113,10 +113,10 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
             <div className="space-y-6">
               {/* Address Section */}
               <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                   Address
                 </h3>
-                <div className="space-y-2 text-gray-900">
+                <div className="space-y-2 text-foreground">
                   <p>{customer.address}</p>
                   <p>
                     {customer.city}
@@ -128,7 +128,7 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
 
               {/* Zone Section */}
               <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                   Zone
                 </h3>
                 {isEditing ? (
@@ -140,7 +140,7 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                         zone_id: e.target.value ? Number(e.target.value) : null,
                       }))
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-border rounded-md focus:ring-2 focus:ring-ring focus:border-primary"
                   >
                     <option value="">No Zone</option>
                     {zones?.map((zone) => (
@@ -159,7 +159,7 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                         {getZoneName(String(customer.zone_id))}
                       </span>
                     ) : (
-                      <span className="text-gray-400 italic">No zone assigned</span>
+                      <span className="text-muted-foreground italic">No zone assigned</span>
                     )}
                   </div>
                 )}
@@ -170,14 +170,14 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                 customer.contact_email ||
                 customer.contact_phone) && (
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                     Contact Information
                   </h3>
                   <div className="space-y-2">
                     {customer.contact_name && (
-                      <div className="flex items-center text-gray-900">
+                      <div className="flex items-center text-foreground">
                         <svg
-                          className="w-5 h-5 mr-2 text-gray-400"
+                          className="w-5 h-5 mr-2 text-muted-foreground"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -193,9 +193,9 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                       </div>
                     )}
                     {customer.contact_email && (
-                      <div className="flex items-center text-gray-900">
+                      <div className="flex items-center text-foreground">
                         <svg
-                          className="w-5 h-5 mr-2 text-gray-400"
+                          className="w-5 h-5 mr-2 text-muted-foreground"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -209,16 +209,16 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                         </svg>
                         <a
                           href={`mailto:${customer.contact_email}`}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-primary hover:text-primary"
                         >
                           {customer.contact_email}
                         </a>
                       </div>
                     )}
                     {customer.contact_phone && (
-                      <div className="flex items-center text-gray-900">
+                      <div className="flex items-center text-foreground">
                         <svg
-                          className="w-5 h-5 mr-2 text-gray-400"
+                          className="w-5 h-5 mr-2 text-muted-foreground"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -232,7 +232,7 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
                         </svg>
                         <a
                           href={`tel:${customer.contact_phone}`}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-primary hover:text-primary"
                         >
                           {customer.contact_phone}
                         </a>
@@ -245,10 +245,10 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
               {/* Customer Type */}
               {customer.customer_type && (
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                     Customer Type
                   </h3>
-                  <p className="text-gray-900 capitalize">
+                  <p className="text-foreground capitalize">
                     {customer.customer_type.replace('_', ' ')}
                   </p>
                 </div>
@@ -257,17 +257,17 @@ export function CustomerSidebar({ customer, isOpen, onClose }: CustomerSidebarPr
               {/* Notes */}
               {customer.notes && (
                 <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
                     Notes
                   </h3>
-                  <p className="text-gray-900 whitespace-pre-wrap">{customer.notes}</p>
+                  <p className="text-foreground whitespace-pre-wrap">{customer.notes}</p>
                 </div>
               )}
             </div>
           </div>
 
           {/* Footer Actions */}
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+          <div className="border-t border-border px-6 py-4 bg-muted">
             {isEditing ? (
               <div className="flex space-x-3">
                 <Button

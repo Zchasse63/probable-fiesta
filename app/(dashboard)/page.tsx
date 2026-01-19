@@ -1,4 +1,4 @@
-import { Package, DollarSign, Users, Truck, Archive, AlertTriangle } from 'lucide-react';
+import { Archive, AlertTriangle, Warehouse } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { StatsCard } from '@/components/dashboard/stats-card';
 import { QuickActions } from '@/components/dashboard/quick-actions';
@@ -128,10 +128,10 @@ export default async function DashboardPage() {
   const activities = await getRecentActivity();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
+        <p className="text-muted-foreground mt-1">
           Welcome to the Frozen Protein Pricing Platform
         </p>
       </div>
@@ -141,28 +141,28 @@ export default async function DashboardPage() {
         <StatsCard
           title="Total Products"
           value={stats.totalProducts.toLocaleString()}
-          icon={Package}
+          iconName="package"
           description={`${stats.categoryCount} categories`}
           href="/inventory"
         />
         <StatsCard
           title="Price Sheets"
           value={stats.priceSheetsThisWeek}
-          icon={DollarSign}
+          iconName="dollar-sign"
           description="Generated this week"
           href="/pricing"
         />
         <StatsCard
           title="Customers"
           value={stats.totalCustomers.toLocaleString()}
-          icon={Users}
+          iconName="users"
           description="Food distributors"
           href="/customers"
         />
         <StatsCard
           title="Freight Rates"
           value={stats.freightRatesStatus === 'calibrated' ? 'Calibrated' : 'Not Calibrated'}
-          icon={Truck}
+          iconName="truck"
           description={
             stats.freightRatesStatus === 'calibrated'
               ? `${stats.freshRatesCount} fresh rates`
@@ -174,14 +174,14 @@ export default async function DashboardPage() {
 
       {/* Pending Deals Alert */}
       {stats.pendingDealsCount > 0 && (
-        <Card className="border-yellow-200 bg-yellow-50">
+        <Card className="border-warning bg-warning/10">
           <CardContent className="flex items-center gap-3 py-4">
-            <AlertTriangle className="h-5 w-5 text-yellow-600" />
+            <AlertTriangle className="h-5 w-5 text-warning-foreground" />
             <div>
-              <p className="font-medium text-yellow-800">
+              <p className="font-medium text-warning-foreground">
                 {stats.pendingDealsCount} pending deal{stats.pendingDealsCount !== 1 ? 's' : ''} awaiting review
               </p>
-              <a href="/deals" className="text-sm text-yellow-700 hover:underline">
+              <a href="/deals" className="text-sm text-warning-foreground hover:underline">
                 Review deals
               </a>
             </div>
@@ -205,19 +205,33 @@ export default async function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="p-3 bg-gray-50 rounded-lg">
-              <p className="font-medium text-gray-900">Pennsylvania Warehouse</p>
-              <p className="text-sm text-gray-600">Boyertown, PA 19512</p>
-              <p className="text-xs text-gray-500 mt-1">
-                {stats.warehouseCounts['1'] || 0} products
-              </p>
+            <div className="rounded-xl border border-border bg-card p-5 shadow-sm hover:shadow-md hover:border-primary/20 transition-all cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Warehouse className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">Pennsylvania Warehouse</h3>
+                  <p className="text-sm text-muted-foreground">Boyertown, PA 19512</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {stats.warehouseCounts['1'] || 0} products
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="p-3 bg-gray-50 rounded-lg">
-              <p className="font-medium text-gray-900">Georgia Warehouse</p>
-              <p className="text-sm text-gray-600">Americus, GA 31709</p>
-              <p className="text-xs text-gray-500 mt-1">
-                {stats.warehouseCounts['2'] || 0} products
-              </p>
+            <div className="rounded-xl border border-border bg-card p-5 shadow-sm hover:shadow-md hover:border-primary/20 transition-all cursor-pointer">
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Warehouse className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">Georgia Warehouse</h3>
+                  <p className="text-sm text-muted-foreground">Americus, GA 31709</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {stats.warehouseCounts['2'] || 0} products
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>

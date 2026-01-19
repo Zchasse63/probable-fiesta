@@ -130,8 +130,8 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
+        <p className="text-muted-foreground mt-2">
           Welcome to the Frozen Protein Pricing Platform
         </p>
       </div>
@@ -174,14 +174,14 @@ export default async function DashboardPage() {
 
       {/* Pending Deals Alert */}
       {stats.pendingDealsCount > 0 && (
-        <Card className="border-yellow-200 bg-yellow-50">
+        <Card className="border-warning-200 bg-warning-50">
           <CardContent className="flex items-center gap-3 py-4">
-            <AlertTriangle className="h-5 w-5 text-yellow-600" />
+            <AlertTriangle className="h-5 w-5 text-warning-600" />
             <div>
-              <p className="font-medium text-yellow-800">
+              <p className="font-medium text-warning-800">
                 {stats.pendingDealsCount} pending deal{stats.pendingDealsCount !== 1 ? 's' : ''} awaiting review
               </p>
-              <a href="/deals" className="text-sm text-yellow-700 hover:underline">
+              <a href="/deals" className="text-sm text-warning-700 hover:underline">
                 Review deals
               </a>
             </div>
@@ -205,17 +205,17 @@ export default async function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="p-3 bg-gray-50 rounded-lg">
-              <p className="font-medium text-gray-900">Pennsylvania Warehouse</p>
-              <p className="text-sm text-gray-600">Boyertown, PA 19512</p>
-              <p className="text-xs text-gray-500 mt-1">
+            <div className="p-3 bg-muted rounded-lg">
+              <p className="font-medium text-foreground">Pennsylvania Warehouse</p>
+              <p className="text-sm text-muted-foreground">Boyertown, PA 19512</p>
+              <p className="text-xs text-muted-foreground mt-1">
                 {stats.warehouseCounts['1'] || 0} products
               </p>
             </div>
-            <div className="p-3 bg-gray-50 rounded-lg">
-              <p className="font-medium text-gray-900">Georgia Warehouse</p>
-              <p className="text-sm text-gray-600">Americus, GA 31709</p>
-              <p className="text-xs text-gray-500 mt-1">
+            <div className="p-3 bg-muted rounded-lg">
+              <p className="font-medium text-foreground">Georgia Warehouse</p>
+              <p className="text-sm text-muted-foreground">Americus, GA 31709</p>
+              <p className="text-xs text-muted-foreground mt-1">
                 {stats.warehouseCounts['2'] || 0} products
               </p>
             </div>

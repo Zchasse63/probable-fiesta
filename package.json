@@ -27,6 +27,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "exceljs": "^4.4.0",
+    "framer-motion": "^12.26.2",
     "lucide-react": "^0.562.0",
     "mapbox-gl": "^3.18.0",
     "next": "16.1.2",
@@ -42,6 +43,7 @@
     "zustand": "^5.0.10"
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

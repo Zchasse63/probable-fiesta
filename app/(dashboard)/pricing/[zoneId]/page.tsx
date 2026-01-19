@@ -173,7 +173,7 @@ export default function ZonePricingPage() {
     return (
       <div className="p-6">
         <div className="text-center py-12">
-          <p className="text-gray-500">Loading zone...</p>
+          <p className="text-muted-foreground/80">Loading zone...</p>
         </div>
       </div>
     );
@@ -185,14 +185,14 @@ export default function ZonePricingPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">{zone.name} Price Sheet</h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Zone {zone.code} - Delivered pricing with freight rate ${avgFreightRate.toFixed(4)}/lb
           </p>
         </div>
       </div>
 
       {/* AI Smart Search */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-card rounded-lg shadow p-4">
         <SmartSearch
           onFiltersApplied={(filters) => {
             setAiFilters(filters);
@@ -207,10 +207,10 @@ export default function ZonePricingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-card rounded-lg shadow p-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Search
             </label>
             <input
@@ -221,12 +221,12 @@ export default function ZonePricingPage() {
                 setAiFilters(null);
               }}
               placeholder="Search by item code or description..."
-              className="w-full px-3 py-2 border border-gray-300 rounded"
+              className="w-full px-3 py-2 border border-border rounded"
               disabled={!!aiFilters}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Brand
             </label>
             <select
@@ -235,7 +235,7 @@ export default function ZonePricingPage() {
                 setBrandFilter(e.target.value);
                 setAiFilters(null);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded"
+              className="w-full px-3 py-2 border border-border rounded"
               disabled={!!aiFilters}
             >
               <option value="">All Brands</option>
@@ -247,7 +247,7 @@ export default function ZonePricingPage() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Warehouse
             </label>
             <select
@@ -256,7 +256,7 @@ export default function ZonePricingPage() {
                 setWarehouseFilter(e.target.value ? Number(e.target.value) : null);
                 setAiFilters(null);
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded"
+              className="w-full px-3 py-2 border border-border rounded"
               disabled={!!aiFilters}
             >
               <option value="">All Warehouses</option>
@@ -272,33 +272,33 @@ export default function ZonePricingPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-4">
-          <p className="text-sm text-gray-600">Total Products</p>
+        <div className="bg-card rounded-lg shadow p-4">
+          <p className="text-sm text-muted-foreground">Total Products</p>
           <p className="text-2xl font-bold">{filteredProducts.length}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <p className="text-sm text-gray-600">Avg Freight Rate</p>
+        <div className="bg-card rounded-lg shadow p-4">
+          <p className="text-sm text-muted-foreground">Avg Freight Rate</p>
           <p className="text-2xl font-bold">${avgFreightRate.toFixed(4)}/lb</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <p className="text-sm text-gray-600">Active Freight Rates</p>
+        <div className="bg-card rounded-lg shadow p-4">
+          <p className="text-sm text-muted-foreground">Active Freight Rates</p>
           <p className="text-2xl font-bold">{freightRates.length}</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
-          <p className="text-sm text-gray-600">Zone</p>
+        <div className="bg-card rounded-lg shadow p-4">
+          <p className="text-sm text-muted-foreground">Zone</p>
           <p className="text-2xl font-bold">{zone.code}</p>
         </div>
       </div>
 
       {/* Freight rate warning */}
       {freightRates.length === 0 && (
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded">
-          <p className="text-yellow-800 font-medium">
+        <div className="p-4 bg-warning-50 border border-warning-200 rounded">
+          <p className="text-warning-800 font-medium">
             ⚠️ No freight rates available for this zone. Prices cannot be calculated.
           </p>
           <a
             href="/freight"
-            className="text-yellow-600 underline hover:text-yellow-800"
+            className="text-warning-600 underline hover:text-warning-800"
           >
             Go to Freight Management →
           </a>
@@ -314,7 +314,7 @@ export default function ZonePricingPage() {
       )}
 
       {/* Price Table */}
-      <div className="bg-white rounded-lg shadow">
+      <div className="bg-card rounded-lg shadow">
         <PriceTable
           items={filteredProducts.map(p => ({
             productId: p.id,

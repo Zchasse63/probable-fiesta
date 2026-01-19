@@ -72,13 +72,13 @@ export default function PricingPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Price Sheet Builder</h1>
-          <p className="text-gray-600">Create and manage weekly price sheets by zone</p>
+          <p className="text-muted-foreground">Create and manage weekly price sheets by zone</p>
         </div>
       </div>
 
       {/* Zone selector */}
-      <div className="bg-white rounded-lg shadow">
-        <div className="border-b border-gray-200">
+      <div className="bg-card rounded-lg shadow">
+        <div className="border-b border-border">
           <nav className="flex -mb-px">
             {zones.map((zone) => (
               <button
@@ -86,8 +86,8 @@ export default function PricingPage() {
                 onClick={() => setSelectedZone(zone.id)}
                 className={`px-6 py-4 border-b-2 font-medium ${
                   selectedZone === zone.id
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground/80 hover:border-border'
                 }`}
               >
                 {zone.name}
@@ -99,30 +99,30 @@ export default function PricingPage() {
         <div className="p-6 space-y-6">
           {/* Freight rate summary */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-gray-50 p-4 rounded">
-              <p className="text-sm text-gray-600">Avg Freight Rate</p>
+            <div className="bg-muted p-4 rounded">
+              <p className="text-sm text-muted-foreground">Avg Freight Rate</p>
               <p className="text-2xl font-bold">
                 ${avgFreightRate.toFixed(4)}/lb
               </p>
             </div>
-            <div className="bg-gray-50 p-4 rounded">
-              <p className="text-sm text-gray-600">Active Rates</p>
+            <div className="bg-muted p-4 rounded">
+              <p className="text-sm text-muted-foreground">Active Rates</p>
               <p className="text-2xl font-bold">{freightRates.length}</p>
             </div>
-            <div className="bg-gray-50 p-4 rounded">
-              <p className="text-sm text-gray-600">Products</p>
+            <div className="bg-muted p-4 rounded">
+              <p className="text-sm text-muted-foreground">Products</p>
               <p className="text-2xl font-bold">{products.length}</p>
             </div>
           </div>
 
           {ratesExpired && (
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded">
-              <p className="text-yellow-800 font-medium">
+            <div className="p-4 bg-warning-50 border border-warning-200 rounded">
+              <p className="text-warning-800 font-medium">
                 ⚠️ Freight rates expired. Please refresh rates before generating price sheet.
               </p>
               <a
                 href="/freight"
-                className="text-yellow-600 underline hover:text-yellow-800"
+                className="text-warning-600 underline hover:text-warning-800"
               >
                 Go to Freight Management →
               </a>
@@ -132,20 +132,20 @@ export default function PricingPage() {
           {/* Week selector and generate button */}
           <div className="flex items-center gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Week Starting
               </label>
               <input
                 type="date"
                 value={weekStart}
                 onChange={(e) => setWeekStart(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded"
+                className="px-3 py-2 border border-border rounded"
               />
             </div>
             <button
               onClick={handleGenerateSheet}
               disabled={createSheet.isPending || ratesExpired || products.length === 0}
-              className="mt-6 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+              className="mt-6 px-6 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 disabled:opacity-50"
             >
               {createSheet.isPending ? "Generating..." : "Generate Price Sheet"}
             </button>

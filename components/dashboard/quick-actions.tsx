@@ -5,6 +5,19 @@ import { Button } from '@/components/ui/button';
 import { Upload, FileSpreadsheet, Users, Truck, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 
+function ActionButton({ href, icon: Icon, label }: { href: string; icon: typeof Upload; label: string }) {
+  return (
+    <Link href={href}>
+      <button className="flex flex-col items-center gap-2 p-6 rounded-xl border border-border bg-card w-full hover:bg-muted/50 hover:border-primary/20 hover:shadow-sm transition-all group">
+        <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+          <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+        </div>
+        <span className="text-sm font-medium">{label}</span>
+      </button>
+    </Link>
+  );
+}
+
 export function QuickActions() {
   return (
     <Card>
@@ -12,36 +25,11 @@ export function QuickActions() {
         <CardTitle>Quick Actions</CardTitle>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-3">
-        <Link href="/inventory">
-          <Button variant="outline" className="h-20 flex-col w-full">
-            <Upload className="h-5 w-5 mb-1" />
-            <span className="text-xs">Upload Inventory</span>
-          </Button>
-        </Link>
-        <Link href="/pricing">
-          <Button variant="outline" className="h-20 flex-col w-full">
-            <FileSpreadsheet className="h-5 w-5 mb-1" />
-            <span className="text-xs">New Price Sheet</span>
-          </Button>
-        </Link>
-        <Link href="/customers">
-          <Button variant="outline" className="h-20 flex-col w-full">
-            <Users className="h-5 w-5 mb-1" />
-            <span className="text-xs">View Customers</span>
-          </Button>
-        </Link>
-        <Link href="/freight">
-          <Button variant="outline" className="h-20 flex-col w-full">
-            <Truck className="h-5 w-5 mb-1" />
-            <span className="text-xs">Freight Rates</span>
-          </Button>
-        </Link>
-        <Link href="/settings/ai-usage">
-          <Button variant="outline" className="h-20 flex-col w-full">
-            <BarChart3 className="h-5 w-5 mb-1" />
-            <span className="text-xs">AI Usage</span>
-          </Button>
-        </Link>
+        <ActionButton href="/inventory" icon={Upload} label="Upload Inventory" />
+        <ActionButton href="/pricing" icon={FileSpreadsheet} label="New Price Sheet" />
+        <ActionButton href="/customers" icon={Users} label="View Customers" />
+        <ActionButton href="/freight" icon={Truck} label="Freight Rates" />
+        <ActionButton href="/settings/ai-usage" icon={BarChart3} label="AI Usage" />
       </CardContent>
     </Card>
   );

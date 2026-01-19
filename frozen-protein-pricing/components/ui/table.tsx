@@ -74,20 +74,20 @@ export function Table<T>({
     <div className={cn("w-full overflow-x-auto", className)}>
       <table className="w-full border-collapse">
         <thead>
-          <tr className="border-b border-gray-200 bg-gray-50">
+          <tr className="border-b border-border bg-muted">
             {columns.map((column) => (
               <th
                 key={column.key}
                 className={cn(
-                  "px-4 py-3 text-left text-sm font-semibold text-gray-900",
-                  sortable && "cursor-pointer hover:bg-gray-100"
+                  "px-4 py-3 text-left text-sm font-semibold text-foreground",
+                  sortable && "cursor-pointer hover:bg-muted"
                 )}
                 onClick={() => handleSort(column.key)}
               >
                 <div className="flex items-center gap-2">
                   {column.header}
                   {sortable && sortColumn === column.key && (
-                    <span className="text-gray-500">
+                    <span className="text-muted-foreground">
                       {sortDirection === "asc" ? "↑" : "↓"}
                     </span>
                   )}
@@ -101,8 +101,8 @@ export function Table<T>({
             <tr
               key={rowIndex}
               className={cn(
-                "border-b border-gray-200 hover:bg-gray-50",
-                rowIndex % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+                "border-b border-border hover:bg-muted",
+                rowIndex % 2 === 0 ? "bg-card" : "bg-muted/50"
               )}
             >
               {columns.map((column) => {
@@ -120,7 +120,7 @@ export function Table<T>({
                 return (
                   <td
                     key={column.key}
-                    className="px-4 py-3 text-sm text-gray-700"
+                    className="px-4 py-3 text-sm text-foreground"
                   >
                     {cellContent}
                   </td>
@@ -132,7 +132,7 @@ export function Table<T>({
             <tr>
               <td
                 colSpan={columns.length}
-                className="px-4 py-8 text-center text-sm text-gray-500"
+                className="px-4 py-8 text-center text-sm text-muted-foreground"
               >
                 No data available
               </td>

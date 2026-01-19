@@ -26,7 +26,7 @@ export function ClusterMarker({ cluster, onClick }: ClusterMarkerProps) {
       }}
     >
       <div
-        className="flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold cursor-pointer shadow-lg hover:bg-blue-600 transition-colors border-2 border-white"
+        className="flex items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold cursor-pointer shadow-lg hover:bg-primary transition-colors border-2 border-white"
         style={{
           width: size,
           height: size,

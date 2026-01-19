@@ -63,7 +63,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
       </div>
     );
   }
@@ -71,10 +71,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   if (!product) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500">Product not found</p>
+        <p className="text-muted-foreground">Product not found</p>
         <button
           onClick={() => router.push("/inventory")}
-          className="mt-4 text-blue-600 hover:underline"
+          className="mt-4 text-primary hover:underline"
         >
           Back to Inventory
         </button>
@@ -87,22 +87,22 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       {/* Breadcrumb */}
       <button
         onClick={() => router.push("/inventory")}
-        className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+        className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Inventory
       </button>
 
-      <div className="bg-white border rounded-lg p-6">
+      <div className="bg-card border rounded-lg p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold">{product.item_code}</h1>
-            <p className="text-gray-500 mt-1">{product.description}</p>
+            <p className="text-muted-foreground mt-1">{product.description}</p>
           </div>
           <button
             onClick={handleDelete}
             disabled={deleteProduct.isPending}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 font-medium flex items-center gap-2 disabled:opacity-50"
           >
             {deleteProduct.isPending ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -116,7 +116,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         <div className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Item Code
               </label>
               <input
@@ -125,12 +125,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 onChange={(e) =>
                   setFormData({ ...formData, item_code: e.target.value })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Brand
               </label>
               <input
@@ -139,13 +139,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 onChange={(e) =>
                   setFormData({ ...formData, brand: e.target.value })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Description
             </label>
             <textarea
@@ -154,13 +154,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 setFormData({ ...formData, description: e.target.value })
               }
               rows={3}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Pack Size
               </label>
               <input
@@ -169,12 +169,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 onChange={(e) =>
                   setFormData({ ...formData, pack_size: e.target.value })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Case Weight (lbs)
               </label>
               <input
@@ -187,14 +187,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     case_weight_lbs: parseFloat(e.target.value) || 0,
                   })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-muted"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Category
               </label>
               <select
@@ -202,7 +202,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <option value="">Select category</option>
                 <option value="chicken">Chicken</option>
@@ -214,7 +214,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Warehouse
               </label>
               <select
@@ -225,7 +225,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     warehouse_id: parseInt(e.target.value),
                   })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <option value="1">PA Boyertown</option>
                 <option value="2">GA Americus</option>
@@ -233,7 +233,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Cases Available
               </label>
               <input
@@ -245,14 +245,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     cases_available: parseInt(e.target.value) || 0,
                   })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Unit Cost ($)
               </label>
               <input
@@ -265,12 +265,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     unit_cost: parseFloat(e.target.value) || 0,
                   })
                 }
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-foreground/80 mb-1">
                 Cost Per LB ($)
               </label>
               <input
@@ -281,13 +281,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     : "—"
                 }
                 disabled
-                className="w-full px-3 py-2 border rounded-lg bg-gray-50 text-gray-600"
+                className="w-full px-3 py-2 border rounded-lg bg-muted text-muted-foreground"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground/80 mb-1">
               Spec Sheet URL
             </label>
             <input
@@ -297,21 +297,21 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 setFormData({ ...formData, spec_sheet_url: e.target.value })
               }
               placeholder="https://example.com/spec.pdf"
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
 
           <div className="flex justify-end gap-3 pt-4 border-t">
             <button
               onClick={() => router.push("/inventory")}
-              className="px-6 py-2 border rounded-lg hover:bg-gray-50 font-medium"
+              className="px-6 py-2 border rounded-lg hover:bg-muted font-medium"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
               disabled={updateProduct.isPending}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2 disabled:opacity-50"
+              className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 font-medium flex items-center gap-2 disabled:opacity-50"
             >
               {updateProduct.isPending && (
                 <Loader2 className="h-4 w-4 animate-spin" />

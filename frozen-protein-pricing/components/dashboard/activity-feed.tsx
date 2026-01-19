@@ -24,10 +24,10 @@ const iconMap = {
 };
 
 const colorMap = {
-  upload: 'text-blue-500',
+  upload: 'text-primary',
   price_sheet: 'text-green-500',
   deal_accepted: 'text-green-600',
-  deal_rejected: 'text-red-500',
+  deal_rejected: 'text-destructive',
   product_update: 'text-purple-500',
 };
 
@@ -41,8 +41,8 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
         <CardContent>
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <Clock className="h-8 w-8 text-gray-300 mb-2" />
-            <p className="text-sm text-gray-500">No recent activity</p>
-            <p className="text-xs text-gray-400">Your recent actions will appear here</p>
+            <p className="text-sm text-muted-foreground">No recent activity</p>
+            <p className="text-xs text-muted-foreground">Your recent actions will appear here</p>
           </div>
         </CardContent>
       </Card>
@@ -65,8 +65,8 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-900">{activity.description}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm text-foreground">{activity.description}</p>
+                  <p className="text-xs text-muted-foreground">
                     {formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}
                   </p>
                 </div>

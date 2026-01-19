@@ -79,69 +79,69 @@ export function CustomerTable({
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        <thead className="bg-muted">
           <tr>
             <th className="px-6 py-3 text-left">
               <input
                 type="checkbox"
                 checked={selectedIds.length === customers.length && customers.length > 0}
                 onChange={handleSelectAll}
-                className="rounded border-gray-300"
+                className="rounded border-border"
               />
             </th>
             <th
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+              className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted"
               onClick={() => handleSort('company_name')}
             >
               Company {sortField === 'company_name' && (sortDirection === 'asc' ? '↑' : '↓')}
             </th>
             <th
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+              className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted"
               onClick={() => handleSort('city')}
             >
               City {sortField === 'city' && (sortDirection === 'asc' ? '↑' : '↓')}
             </th>
             <th
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+              className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted"
               onClick={() => handleSort('state')}
             >
               State {sortField === 'state' && (sortDirection === 'asc' ? '↑' : '↓')}
             </th>
             <th
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+              className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider cursor-pointer hover:bg-muted"
               onClick={() => handleSort('zone')}
             >
               Zone {sortField === 'zone' && (sortDirection === 'asc' ? '↑' : '↓')}
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
               Type
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
               Contact
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-card divide-y divide-gray-200">
           {sortedCustomers.map((customer) => (
-            <tr key={customer.id} className="hover:bg-gray-50">
+            <tr key={customer.id} className="hover:bg-muted">
               <td className="px-6 py-4 whitespace-nowrap">
                 <input
                   type="checkbox"
                   checked={selectedIds.includes(customer.id)}
                   onChange={() => handleSelectOne(customer.id)}
-                  className="rounded border-gray-300"
+                  className="rounded border-border"
                 />
               </td>
-              <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
+              <td className="px-6 py-4 whitespace-nowrap font-medium text-foreground">
                 {customer.company_name}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                 {customer.city}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                 {customer.state}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -154,21 +154,21 @@ export function CustomerTable({
                   </span>
                 )}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                 {customer.customer_type?.replace('_', ' ')}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+              <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">
                 <div className="text-sm">
                   {customer.contact_name && <div>{customer.contact_name}</div>}
                   {customer.contact_email && (
-                    <div className="text-gray-400">{customer.contact_email}</div>
+                    <div className="text-muted-foreground">{customer.contact_email}</div>
                   )}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm">
                 <button
                   onClick={() => router.push(`/customers/${customer.id}`)}
-                  className="text-blue-600 hover:text-blue-900 mr-3"
+                  className="text-primary hover:text-primary mr-3"
                 >
                   Edit
                 </button>
@@ -180,7 +180,7 @@ export function CustomerTable({
                 </button>
                 <button
                   onClick={() => handleDelete(customer.id)}
-                  className="text-red-600 hover:text-red-900"
+                  className="text-destructive hover:text-destructive/80"
                 >
                   Delete
                 </button>
@@ -191,7 +191,7 @@ export function CustomerTable({
       </table>
 
       {sortedCustomers.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-muted-foreground">
           No customers found
         </div>
       )}

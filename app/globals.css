@@ -1,18 +1,205 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tell Tailwind v4 where to scan for classes */
+@source "../components/**/*.{js,ts,jsx,tsx}";
+@source "../app/**/*.{js,ts,jsx,tsx}";
+@source "../lib/**/*.{js,ts,jsx,tsx}";
+
+/* ============================================
+   TAILWIND v4 THEME - Direct values required
+   ============================================ */
+
+@theme {
+  /* Font family */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Neutral gray scale - PURE NEUTRAL, no blue */
+  --color-gray-50: oklch(0.98 0 0);
+  --color-gray-100: oklch(0.95 0 0);
+  --color-gray-200: oklch(0.90 0 0);
+  --color-gray-300: oklch(0.82 0 0);
+  --color-gray-400: oklch(0.68 0 0);
+  --color-gray-500: oklch(0.55 0 0);
+  --color-gray-600: oklch(0.45 0 0);
+  --color-gray-700: oklch(0.37 0 0);
+  --color-gray-800: oklch(0.27 0 0);
+  --color-gray-900: oklch(0.20 0 0);
+  --color-gray-950: oklch(0.13 0 0);
+
+  /* Surface colors - PURE NEUTRAL */
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+
+  /* Sidebar - PURE NEUTRAL OFF-WHITE */
+  --color-sidebar: oklch(0.97 0 0);
+  --color-sidebar-foreground: oklch(0.25 0 0);
+  --color-sidebar-border: oklch(0.90 0 0);
+
+  /* Muted - PURE NEUTRAL */
+  --color-muted: oklch(0.96 0 0);
+  --color-muted-foreground: oklch(0.5 0 0);
+
+  /* Borders - PURE NEUTRAL */
+  --color-border: oklch(0.90 0 0);
+  --color-input: oklch(0.90 0 0);
+  --color-ring: oklch(0.45 0.2 250);
+
+  /* Accent - very subtle blue tint */
+  --color-accent: oklch(0.96 0.01 250);
+  --color-accent-foreground: oklch(0.25 0 0);
+
+  /* Primary - Blue (for buttons, links, active states) */
+  --color-primary: oklch(0.45 0.2 250);
+  --color-primary-foreground: oklch(0.98 0 0);
+
+  /* Secondary */
+  --color-secondary: oklch(0.96 0 0);
+  --color-secondary-foreground: oklch(0.25 0 0);
+
+  /* Semantic colors */
+  --color-destructive: oklch(0.55 0.22 25);
+  --color-destructive-foreground: oklch(0.98 0 0);
+  --color-success: oklch(0.55 0.18 145);
+  --color-success-foreground: oklch(0.98 0 0);
+  --color-warning: oklch(0.75 0.15 85);
+  --color-warning-foreground: oklch(0.145 0 0);
+  --color-info: oklch(0.55 0.2 250);
+  --color-info-foreground: oklch(0.98 0 0);
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: oklch(0.90 0 0);
+  }
+
+  html {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: oklch(1 0 0);
+    color: oklch(0.145 0 0);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid oklch(0.45 0.2 250);
+    outline-offset: 2px;
+  }
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+
+@layer components {
+  /* Glass morphism - for headers and modals */
+  .glass {
+    background-color: oklch(1 0 0 / 80%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* ============================================
+   UTILITY OVERRIDES
+   ============================================ */
+
+@layer utilities {
+  /* Ensure sidebar is PURE NEUTRAL */
+  .bg-sidebar {
+    background-color: oklch(0.97 0 0) !important;
+  }
+
+  .text-sidebar-foreground {
+    color: oklch(0.25 0 0) !important;
+  }
+
+  .border-sidebar-border {
+    border-color: oklch(0.90 0 0) !important;
+  }
+
+  /* Tabular numbers for data tables */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lining-nums {
+    font-variant-numeric: lining-nums;
+  }
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.96 0 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.82 0 0);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.68 0 0);
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark {
+  --color-background: oklch(0.12 0 0);
+  --color-foreground: oklch(0.95 0 0);
+  --color-card: oklch(0.18 0 0);
+  --color-card-foreground: oklch(0.95 0 0);
+  --color-sidebar: oklch(0.15 0 0);
+  --color-sidebar-foreground: oklch(0.95 0 0);
+  --color-muted: oklch(0.25 0 0);
+  --color-muted-foreground: oklch(0.65 0 0);
+  --color-border: oklch(1 0 0 / 10%);
+  --color-primary: oklch(0.65 0.18 250);
+}
+
+.dark body {
+  background-color: oklch(0.12 0 0);
+  color: oklch(0.95 0 0);
+}
+
+.dark .bg-sidebar {
+  background-color: oklch(0.15 0 0) !important;
+}
+
+.dark .text-sidebar-foreground {
+  color: oklch(0.95 0 0) !important;
+}
+
+.dark .glass {
+  background-color: oklch(0.12 0 0 / 80%);
 }
